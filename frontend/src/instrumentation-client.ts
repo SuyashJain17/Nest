@@ -19,8 +19,9 @@ Sentry.init({
 })
 
 // Initialize PostHog for staging and production only
+const normalizedEnv = ENVIRONMENT?.toLowerCase()
 const isPostHogEnabled =
-  (ENVIRONMENT === 'staging' || ENVIRONMENT === 'production') && POSTHOG_KEY && POSTHOG_HOST
+  (normalizedEnv === 'staging' || normalizedEnv === 'production') && POSTHOG_KEY && POSTHOG_HOST
 
 if (isPostHogEnabled) {
   /* eslint-disable @typescript-eslint/naming-convention -- PostHog SDK requires snake_case */
